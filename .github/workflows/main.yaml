@@ -1,0 +1,25 @@
+name: 🚀 Deploy en Surge
+
+on: 
+  push:
+    branches: 
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛎️ Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: 📦 Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 🚀 Instalar Surge
+        run: npm install -g surge
+
+      - name: 🔑 Autenticarse y desplegar en Surge
+        run: surge --project ./ --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
