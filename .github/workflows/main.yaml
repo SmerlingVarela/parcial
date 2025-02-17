@@ -1,8 +1,8 @@
 name: 🚀 Deploy en Surge
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           node-version: 18
 
       - name: 🚀 Instalar Surge
-        run: npm install -g surge
+        run: npm ci
 
       - name: 🔑 Autenticarse y desplegar en Surge
         run: surge --project ./ --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
